@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    - if(locals.flashError)
+        div(id='flash') #{locals.flashError}
+    h1= title
+
+    - if (locals.username)
+      div #{locals.username}
+        div
+          a(href="/account-settings") Account settings
+          a(href="/logout", id="logout") Sign out
+    div(class="container-fluid")
+        - if (!locals.username)
+          div(class="row-fluid")
+             h2(class="form-signin-heading") Log in
+
+             form(name="input", action="/login", method="post", class="form-signin")
+
+                  div
+                      input(type="text", name="email", class="input-block-level", placeholder="Email address")
+                  div
+                      input(type="password", name="password", class="input-block-level", placeholder="Password")
+                  div
+                      input(type="submit", id="login", class="btn btn-large btn-primary")
+
+             a(href="/forgotten-password") Forgotten your password?
+
+             a(href="/register") Register a new account
+

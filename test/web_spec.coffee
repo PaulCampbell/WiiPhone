@@ -247,8 +247,6 @@ describe 'Web tests', ->
               browser.text('.text-error[for="user[email]"]').should.equal 'required'
               done()
 
-
-
     describe 'reset password', ->
       browser = null
       before (done) ->
@@ -264,3 +262,19 @@ describe 'Web tests', ->
             browser.text('h2').should.equal 'Update your password'
             done()
 
+
+    describe 'connect phone', ->
+      browser = null
+      before (done) ->
+        zombie.visit 'http://localhost:2999/', (e, brwsr)  ->
+          brwsr.fill('input[name="email"]', 'jimbob@southwest.us').fill('input[name="password"]', 'mynewpassword').
+          pressButton '#login', ->
+            browser = brwsr
+            done()
+
+      it 'should generate a url containing a phone connection id', (done) ->
+        browser.visit 'http://localhost:2999/', (e, browser) ->
+          browser.clickLink 'Connect phone', ->
+            console.log browser.text('#phone_link')
+            browser.text('#phone_link').should.include('/c/')
+            done()

@@ -190,7 +190,7 @@ function accountSettingsForm(req, res) {
 
 exports.accountSettingsForm = accountSettingsForm;
 
-function accountSettings(req, res){
+function accountSettings(req, res) {
 
     function settingsUpdateFailed(err, user) {
            if(err.code == 11000 && err.err.indexOf("email") != -1)
@@ -207,7 +207,7 @@ function accountSettings(req, res){
            });
     }
 
-    Users.User.findOne({_id:req.session.user_id}, function(err, theUser){
+    Users.User.findOne({_id:req.session.user_id}, function(err, theUser) {
         if(err) console.log(err)
         theUser.email = req.body.user.email;
         theUser.username = req.body.user.username;
@@ -221,5 +221,24 @@ function accountSettings(req, res){
             }
         })
    })
-    }
-    exports.accountSettings = accountSettings;
+}
+exports.accountSettings = accountSettings;
+
+
+
+function connectPhone(req,res) {
+
+  Users.User.findOne({_id:req.session.user_id}, function(err, user) {
+      if(err) console.log(err)
+      var connection_id = 1;
+
+      res.render('phoneconnect', {
+          title: 'connect',
+          user: user,
+          connection_id: connection_id
+      });
+  });
+
+}
+
+exports.connectPhone = connectPhone;

@@ -16,9 +16,11 @@ app.get('/forgotten-password', account.forgottenPassword);
 app.post('/request-password', account.passwordRequest);
 app.get('/change-password/:token', account.changePassword);
 app.post('/change-password', account.changePasswordRequest);
+
 app.post('/authedPasswordChange',authentication.checkAuth, account.authedPasswordChange)
 app.get('/account-settings',authentication.checkAuth, account.accountSettingsForm);
 app.post('/account-settings',authentication.checkAuth, account.accountSettings);
+app.get('/connect', authentication.checkAuth, account.connectPhone)
 
 }
 

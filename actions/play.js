@@ -16,3 +16,14 @@ function connectPhone(req,res) {
 }
 
 exports.connectPhone = connectPhone;
+
+
+
+function controlScreen(req,res) {
+  res.render('phone', {
+            title: 'connect'
+        });
+
+}
+
+exports.controlScreen = controlScreen;

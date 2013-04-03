@@ -1,9 +1,11 @@
 extends layout
 
 block content
-  span(id='phone_link') http://localhost:2999/c/#{locals.username}
+  span(id='phone_link') http://localhost:2999/c/#{locals.connection_id}
   <br/>
   a(id='test') asdsad
+
+  div(id='feedback') no input
 
   script(src="/socket.io/socket.io.js")
   script
@@ -11,6 +13,11 @@ block content
     socket.on('news', function (data) {
       console.log(data);
     });
+
+    socket.on('movement', function(data) {
+      $('#feedback').html(data);
+    });
+
     $('#test').on('click', function(){
       socket.emit('my other event', { my: 'data' });
     });

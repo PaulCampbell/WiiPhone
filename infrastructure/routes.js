@@ -24,6 +24,7 @@ app.post('/account-settings',authentication.checkAuth, account.accountSettings);
 
 
   app.get('/connect', authentication.checkAuth, play.connectPhone)
+  app.get('/c/:connection_id', authentication.checkAuth, play.controlScreen)
 
 }
 

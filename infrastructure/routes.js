@@ -2,6 +2,7 @@ var  user = require('../actions/user')
   , home = require('../actions/home')
   , account = require('../actions/account')
   , authentication = require('./authentication.js')
+  , play =  require('../actions/play.js')
 
 function init(app){
 
@@ -20,7 +21,9 @@ app.post('/change-password', account.changePasswordRequest);
 app.post('/authedPasswordChange',authentication.checkAuth, account.authedPasswordChange)
 app.get('/account-settings',authentication.checkAuth, account.accountSettingsForm);
 app.post('/account-settings',authentication.checkAuth, account.accountSettings);
-app.get('/connect', authentication.checkAuth, account.connectPhone)
+
+
+  app.get('/connect', authentication.checkAuth, play.connectPhone)
 
 }
 

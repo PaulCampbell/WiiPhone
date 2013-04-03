@@ -2,4 +2,15 @@ extends layout
 
 block content
   span(id='phone_link') http://localhost:2999/c/#{locals.username}
+  <br/>
+  a(id='test') asdsad
 
+  script(src="/socket.io/socket.io.js")
+  script
+    var socket = io.connect('http://localhost:2999');
+    socket.on('news', function (data) {
+      console.log(data);
+    });
+    $('#test').on('click', function(){
+      socket.emit('my other event', { my: 'data' });
+    });
